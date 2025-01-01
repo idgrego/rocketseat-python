@@ -1,0 +1,18 @@
+<!-- https://www.codecademy.com/learn/learn-flask-jinja2-templates-and-forms/modules/flask-jinja2-templates-and-forms/cheatsheet -->
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet records</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="actions">
+        <h1>Diet records</h1>
+        <a class="button" href="{{url_for('logout')}}">Sair</a>
+    </div>
+    <p>{{current_user.name}} bem-vindo!</p>
+</body>
+</html>

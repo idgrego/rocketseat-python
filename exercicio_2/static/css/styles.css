@@ -1,0 +1,43 @@
+
+.button, button {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px blue solid;
+    background-color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button[type='submit'] {
+    background-color: blue;
+    color: white;
+}
+
+.button:hover, button:hover{
+    color: white;
+    font-weight: bold;
+    background-color: lightblue;
+}
+
+.form, form {
+    width: 33%;
+    margin: auto;
+
+    input {
+        display: block;
+        margin: 5px 0;
+        width: 100%;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .err-msg {
+        color: red;
+        font-size: small;
+    }
+}

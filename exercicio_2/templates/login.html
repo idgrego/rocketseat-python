@@ -1,0 +1,37 @@
+<!-- https://www.codecademy.com/learn/learn-flask-jinja2-templates-and-forms/modules/flask-jinja2-templates-and-forms/cheatsheet -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet records - login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <form method="post">
+        <h1>Diet records - Login</h1>
+        
+        <input type="text" name="username" placeholder="usuário" required value="{{ data['username'] if data and 'username' in data else '' }}">
+        {% if err_list and 'username' in err_list %} <div class="err-msg">{{err_list['username'].message}}</div>  {% endif %}
+    
+        <input type="password" name="password" placeholder="senha" required value="{{ data['password'] if data and 'password' in data else '' }}">
+        {% if err_list and 'password' in err_list %} <div class="err-msg">{{err_list['password'].message}}</div>  {% endif %}
+        
+        <div class="actions">
+            <span>
+                <a class="button" href="{{url_for('home')}}">Home</a>
+            </span>
+            <span>
+                <button type="reset" value="Limpar">Limpar</button>
+                <button type="submit" value="Acessar">Acessar</button>
+            </span>
+        </div>
+
+        {% if err_form %}
+        <div class="err-msg">
+            {{err_form}}
+        </div>
+        {% endif %}
+    </form>
+</body>
+</html>
