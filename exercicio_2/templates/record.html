@@ -1,0 +1,71 @@
+<!-- https://www.codecademy.com/learn/learn-flask-jinja2-templates-and-forms/modules/flask-jinja2-templates-and-forms/cheatsheet -->
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet records</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <form method="POST">
+        <h1>Diet records - {{"Adicionando" if operation == "POST" else "Editando" if operation == "PUT" else "Excluindo"}}</h1>
+        
+        {% if operation != "DELETE" %}
+
+        <input type="datetime-local" name="dt" placeholder="data e horário" required value="{{ data['dt'] if data and 'dt' in data else '' }}">
+        {% if err_list and 'dt' in err_list %} <div class="err-msg">{{err_list['dt'].message}}</div>  {% endif %}
+    
+        <input type="text" name="name" placeholder="nome" required value="{{ data['name'] if data and 'name' in data else '' }}">
+        {% if err_list and 'name' in err_list %} <div class="err-msg">{{err_list['name'].message}}</div>  {% endif %}
+
+        <textarea rows="3" name="description" placeholder="descrição">{{ data['description'] if data and 'description' in data else '' }}</textarea>
+        {% if err_list and 'description' in err_list %} <div class="err-msg">{{err_list['description'].message}}</div>  {% endif %}
+
+        <label class="flex">
+            {% if data and 'onDiet' in data and data['onDiet'] == True %}
+            <input type="checkbox" name="onDiet" checked> faz parte da dieta?
+            {% else %}
+            <input type="checkbox" name="onDiet"> faz parte da dieta?
+            {% endif %}
+            {% if err_list and 'onDiet' in err_list %} <div class="err-msg">{{err_list['onDiet'].message}}</div>  {% endif %}
+        </label>        
+
+        {% else %}
+
+        <!--excluindo-->
+        <input type="datetime-local" name="dt" placeholder="data e horário" disabled value="{{ data['dt'] if data and 'dt' in data else '' }}">
+        <input type="text" name="name" placeholder="nome" disabled value="{{ data['name'] if data and 'name' in data else '' }}">
+        <textarea rows="3" name="description" placeholder="descrição" disabled>{{ data['description'] if data and 'description' in data else '' }}</textarea>
+        <label class="flex">
+            {% if data and 'onDiet' in data and data['onDiet'] == True %}
+            <input type="checkbox" name="onDiet" checked disabled> faz parte da dieta?
+            {% else %}
+            <input type="checkbox" name="onDiet" disabled> faz parte da dieta?
+            {% endif %}
+        </label>
+
+        {% endif %}
+        
+        <div class="actions">
+            <span>
+                <a class="button" href="{{url_for('records')}}">Cancelar</a>
+            </span>
+            <span>
+                {% if operation != "DELETE" %}
+                <button type="reset">Reset</button>
+                {% endif %}
+                <button type="submit">{{"Adicionar" if operation == "POST" else "Editar" if operation == "PUT" else "Excluir"}}</button>
+            </span>
+        </div>
+
+        {% if err_form %}
+        <div class="err-msg">
+            {{err_form}}
+        </div>
+        {% endif %}
+    </form>
+
+</body>
+</html>

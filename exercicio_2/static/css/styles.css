@@ -23,10 +23,14 @@ button[type='submit'] {
     width: 33%;
     margin: auto;
 
-    input {
+    input, textarea {
         display: block;
         margin: 5px 0;
         width: 100%;
+    }
+
+    input[type="checkbox"] {
+        width: auto;
     }
 
     .actions {
@@ -40,4 +44,34 @@ button[type='submit'] {
         color: red;
         font-size: small;
     }
+}
+
+table {
+    width: 100%;
+    tr {
+        th, td {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            height: 36px;
+        }
+
+        .col-dt {
+            width: 100px;
+        }
+        /* .col-name {}
+        .col-descr {} */
+        .col-ondiet { width: 100px; }
+        .col-action { width: 200px; }
+    }
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.flex-space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
